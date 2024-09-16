@@ -1,0 +1,6 @@
+channels = ["conda-forge", "bioconda"]
+
+[deps]
+r-dplyr = "==1.1.4"
+r-base = "==4.3.3"
+bioconductor-biobase = "==2.62.0"
