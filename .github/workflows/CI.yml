@@ -73,6 +73,6 @@ jobs:
         shell: julia --project=docs --color=yes {0}
         run: |
           using Documenter: DocMeta, doctest
-          using SynthethicExpressionMixtures
-          DocMeta.setdocmeta!(SynthethicExpressionMixtures, :DocTestSetup, :(using SynthethicExpressionMixtures); recursive=true)
-          doctest(SynthethicExpressionMixtures)
+          using SyntheticExpressionMixtures
+          DocMeta.setdocmeta!(SyntheticExpressionMixtures, :DocTestSetup, :(using SyntheticExpressionMixtures); recursive=true)
+          doctest(SyntheticExpressionMixtures)

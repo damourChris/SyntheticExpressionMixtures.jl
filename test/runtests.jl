@@ -1,6 +1,6 @@
-using SynthethicExpressionMixtures
+using SyntheticExpressionMixtures
 using Test
 
-@testset "SynthethicExpressionMixtures.jl" begin
+@testset "SyntheticExpressionMixtures.jl" begin
     # Write your tests here.
 end

@@ -1,23 +1,19 @@
-using SynthethicExpressionMixtures
+using SyntheticExpressionMixtures
 using Documenter
 
-DocMeta.setdocmeta!(SynthethicExpressionMixtures, :DocTestSetup, :(using SynthethicExpressionMixtures); recursive=true)
+DocMeta.setdocmeta!(SyntheticExpressionMixtures, :DocTestSetup,
+                    :(using SyntheticExpressionMixtures); recursive=true)
 
 makedocs(;
-    modules=[SynthethicExpressionMixtures],
-    authors="Chris Damour",
-    sitename="SynthethicExpressionMixtures.jl",
-    format=Documenter.HTML(;
-        canonical="https://damourChris.github.io/SynthethicExpressionMixtures.jl",
-        edit_link="main",
-        assets=String[],
-    ),
-    pages=[
-        "Home" => "index.md",
-    ],
-)
+         modules=[SyntheticExpressionMixtures],
+         authors="Chris Damour",
+         sitename="SyntheticExpressionMixtures.jl",
+         format=Documenter.HTML(;
+                                canonical="https://damourChris.github.io/SyntheticExpressionMixtures.jl",
+                                edit_link="main",
+                                assets=String[],),
+         pages=["Home" => "index.md"],)
 
 deploydocs(;
-    repo="github.com/damourChris/SynthethicExpressionMixtures.jl",
-    devbranch="main",
-)
+           repo="github.com/damourChris/SyntheticExpressionMixtures.jl",
+           devbranch="main",)

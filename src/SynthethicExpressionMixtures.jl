@@ -1,5 +1,5 @@
 
-module SynthethicExpressionMixtures
+module SyntheticExpressionMixtures
 
 using Comonicon
 using Configurations

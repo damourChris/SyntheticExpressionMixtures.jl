@@ -1,14 +1,14 @@
 ```@meta
-CurrentModule = SynthethicExpressionMixtures
+CurrentModule = SyntheticExpressionMixtures
 ```
 
-# SynthethicExpressionMixtures
+# SyntheticExpressionMixtures
 
-Documentation for [SynthethicExpressionMixtures](https://github.com/damourChris/SynthethicExpressionMixtures.jl).
+Documentation for [SyntheticExpressionMixtures](https://github.com/damourChris/SyntheticExpressionMixtures.jl).
 
 ```@index
 ```
 
 ```@autodocs
-Modules = [SynthethicExpressionMixtures]
+Modules = [SyntheticExpressionMixtures]
 ```

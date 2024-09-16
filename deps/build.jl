@@ -1,2 +1,2 @@
-using SynthethicExpressionMixtures
-SynthethicExpressionMixtures.comonicon_install()
+using SyntheticExpressionMixtures
+SyntheticExpressionMixtures.comonicon_install()
