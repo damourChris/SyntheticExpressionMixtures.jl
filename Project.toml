@@ -3,6 +3,16 @@ uuid = "66a9c265-a980-407a-b4a0-c883b541b1af"
 authors = ["Chris Damour"]
 version = "1.0.0-DEV"
 
+[deps]
+Comonicon = "863f3e99-da2a-4334-8734-de3dacbe5542"
+CondaPkg = "992eb4ea-22a4-4c89-a5bb-47a3300528ab"
+Configurations = "5218b696-f38b-4ac9-8b61-a12ec717816d"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+ExpressionData = "479be80e-0d6f-4501-bee0-9ae8a09d31d3"
+Preferences = "21216c6a-2e73-6563-6e65-726566657250"
+TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+
 [compat]
 julia = "1.6.7"
 
