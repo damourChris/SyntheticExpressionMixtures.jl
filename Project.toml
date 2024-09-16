@@ -1,7 +1,7 @@
 name = "SynthethicExpressionMixtures"
 uuid = "66a9c265-a980-407a-b4a0-c883b541b1af"
 authors = ["Chris Damour"]
-version = "1.0.0-DEV"
+version = "1.0.0"
 
 [deps]
 Comonicon = "863f3e99-da2a-4334-8734-de3dacbe5542"
