@@ -3,3 +3,9 @@
 *.jl.mem
 /docs/Manifest.toml
 /docs/build/
+
+deps/build.log
+
+.CondaPkg
+
+Manifest.toml
