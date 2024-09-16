@@ -1,0 +1,6 @@
+name = "sem"
+
+[install]
+completion = true
+quiet = false
+optimize = 2
