@@ -1,6 +1,6 @@
 using SyntheticExpressionMixtures
 using Test
+using TestItems
+using TestItemRunner
 
-@testset "SyntheticExpressionMixtures.jl" begin
-    # Write your tests here.
-end
+@run_package_tests
