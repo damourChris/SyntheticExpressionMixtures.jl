@@ -109,3 +109,77 @@ function load_config(file_path::String)::Config
         exit(1)
     end
 end
+
+const supported_eset_extensions = [".rds", ".RDS", ".jld2"]
+"""
+    load_input(eset_file::String, config::Config)
+
+Load the input expression data from the file specified in the configuration. The function will
+load the expression data from the file and return it as an `ExpressionSet`.
+"""
+function load_input(eset_file::String, config::Config)
+
+    # Check if the file extension is valid
+    if all(endswith.(eset_file, supported_eset_extensions) .== false)
+        throw(ArgumentError("Invalid file extension: $eset_file. Supported extensions: $(join(supported_eset_extensions, ", "))"))
+        exit(1)
+    end
+
+    # Load the expression data from the file
+    eset = load_eset(eset_file)
+
+    # Get the number of samples from the configuration
+    samples = config.dataset.samples
+
+    # If the number of samples is less than the number of samples in the expression set,
+    # select a random subset of samples
+    if samples < length(names(phenotype_data(eset)))
+        indices = rand(1:size(eset, 2), samples)
+        eset = eset[:, indices]
+    end
+
+    return eset
+end
+
+function save_results(eset::ExpressionSet, descriptor::Dict, config::Config)
+    try
+        # Writing the results to output dir
+        eset_filename = output_file(config)
+
+        if isfile(eset_filename)
+            @warn "Overwriting existing expression set file: $eset_filename"
+        end
+
+        # Save the synthetic expression set to a file
+        try
+            save_eset(eset, eset_filename)
+            @info "Saved results to: $eset_filename"
+        catch e
+            @error "Failed to save eset"
+        end
+
+        # Save the descriptor file
+        descriptor_filepath = joinpath(output_dir(config), "descriptor.toml")
+
+        # Create the file
+        if isfile(descriptor_filepath)
+            @warn "Overwriting existing descriptor file: $descriptor_filepath"
+        else
+            mkpath(dirname(descriptor_filepath))
+        end
+
+        # Populate file with data from dict using TOML
+        open(descriptor_filepath, "w") do io
+            return TOML.print(io, descriptor)
+        end
+
+        @info "Saved descriptor to: $descriptor_filepath"
+
+    catch e
+        if isa(e, SystemError)
+            @error "Unable to access the file system: $e"
+            exit(1)
+        end
+        @error "An error occured while saving: $e"
+    end
+end
