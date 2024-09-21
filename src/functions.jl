@@ -118,8 +118,8 @@ function generate_synthetic_mixture_pdata(base_eset::ExpressionSet,
                                                                     proportions[!, sample])
     end
 
-    return @eval DataFrame(; sample_names=names(proportions),
-                     $(cell_type)=proportions_columns)
+    return DataFrame(; sample_names=names(proportions),
+                     cell_type=proportions_columns)
 end
 
 """
