@@ -13,6 +13,6 @@ export generate_proportions, calculate_gene_expressions, create_proportion_label
        generate_descriptor_file
 
 include("./functions.jl")
-export generate_synthethic_expression_values
+export generate_synthetic_expression_values
 
 end
