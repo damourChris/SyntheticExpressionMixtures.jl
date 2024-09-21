@@ -7,5 +7,5 @@
 deps/build.log
 
 .CondaPkg
-
+LocalPreferences.toml
 Manifest.toml
