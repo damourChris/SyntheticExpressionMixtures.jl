@@ -1,7 +1,6 @@
 
 module SyntheticExpressionMixtures
 
-using Comonicon
 using Configurations
 using DataFrames
 using Distributions
