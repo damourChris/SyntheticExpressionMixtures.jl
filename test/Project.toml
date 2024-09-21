@@ -1,4 +1,6 @@
 [deps]
+ExpressionData = "479be80e-0d6f-4501-bee0-9ae8a09d31d3"
+RCall = "6f49c342-dc21-5d91-9882-a32aef131414"
 SyntheticExpressionMixtures = "66a9c265-a980-407a-b4a0-c883b541b1af"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 TestItemRunner = "f8b46487-2199-4994-9208-9a1283c18c0a"
