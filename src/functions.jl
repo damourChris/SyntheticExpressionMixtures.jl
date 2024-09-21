@@ -178,12 +178,5 @@ function generate_synthetic_expression_mixtures(base_eset::ExpressionSet,
                                    experiment_data(base_eset),
                                    annotation(base_eset))
 
-    # Step 6: Save the synthetic expression set to a file
-    output_file = joinpath(path(config), "synthetic_eset.rds")
-    save_eset(synthetic_eset, output_file)
-
-    # Step 7: Generate the descriptor file
-    descriptor = generate_descriptor_file(config)
-
-    return synthetic_eset, descriptor
+    return synthetic_eset
 end
