@@ -71,9 +71,9 @@ The function returns a matrix of synthetic expression values with the same numbe
 original expression set and the number of columns equal to the number of samples.
 """
 function generate_synthetic_expression_values(eset::ExpressionSet,
-                                               cell_types::Dict{String,Vector{Int}},
-                                               proportions::DataFrame,
-                                               config::Config)::Matrix
+                                              cell_types::Dict{String,Vector{Int}},
+                                              proportions::DataFrame,
+                                              config::Config)::Matrix
     # Get the expression values
     gxdata = expression_values(Matrix, eset)
 
@@ -100,8 +100,8 @@ function generate_synthetic_expression_values(eset::ExpressionSet,
 end
 
 function generate_synthetic_mixture_pdata(base_eset::ExpressionSet,
-                                           proportions::DataFrame,
-                                           config::Config)::DataFrame
+                                          proportions::DataFrame,
+                                          config::Config)::DataFrame
     # Get the cell type column
     (; cell_type) = config.column
 
@@ -127,7 +127,7 @@ Generate synthetic expression mixtures from a given base expression set. The fun
 the synthetic expression mixtures based on the configuration provided.
 """
 function generate_synthetic_expression_mixtures(base_eset::ExpressionSet,
-                                                 config::Config)
+                                                config::Config)
 
     # Step 1: Sample the synthetic proportions corresponding to each cell types
     #       This function will generate the synthetic proportions for each cell type
@@ -160,8 +160,8 @@ function generate_synthetic_expression_mixtures(base_eset::ExpressionSet,
     #       This function will generate the synthetic expression values for each sample based on the
     #       proportions and the aggregated expression values for each cell type
     syn_gxdata::Matrix = generate_synthetic_expression_values(base_eset_aggr,
-                                                               cell_types,
-                                                               proportions, config)
+                                                              cell_types,
+                                                              proportions, config)
 
     # Step 5: Generate the synthetic expression set phenotype data 
     #       This function will generate the synthetic expression set (structs) based on the synthetic
