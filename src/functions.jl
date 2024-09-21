@@ -92,6 +92,9 @@ function generate_synthetic_expression_values(eset::ExpressionSet,
                 gene_exprs = gxdata[:, cell_type_index]
                 gx_ = vec(gene_exprs) .* target_proportion
                 new_expression[:, sample_index] += gx_
+            else
+                new_expression[:, sample_index] += gxdata[:, first(cell_type_indices)] .*
+                                                   target_proportion
             end
         end
     end
