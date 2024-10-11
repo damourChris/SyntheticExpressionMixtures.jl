@@ -51,11 +51,11 @@ end
 end
 
 """
-    Config
+    SYDConfig
 
 Configuration object
 """
-@option struct Config
+@option struct SYDConfig
     num_datasets::Int = 1
     expression_method::String = "mean"
     file::FileConfig = FileConfig()
@@ -68,24 +68,24 @@ Configuration object
 end
 
 """
-    path(config::Config)
+    path(config::SYDConfig)
 """
-path(config::Config) = config.file.data_path
+path(config::SYDConfig) = config.file.data_path
 
 """
-    output_dir(config::Config)
+    output_dir(config::SYDConfig)
 """
-output_dir(config::Config) = config.file.output_dir
+output_dir(config::SYDConfig) = config.file.output_dir
 
 """
-    output_file(config::Config)
+    output_file(config::SYDConfig)
 """
-output_file(config::Config) = joinpath(output_dir(config),
-                                       config.dataset.base_eset_id *
-                                       ".synthetic.jld2")
+output_file(config::SYDConfig) = joinpath(output_dir(config),
+                                          config.dataset.base_eset_id *
+                                          ".synthetic.jld2")
 
 """
-    load_config(file_path::String)::Config
+    load_config(file_path::String)::SYDConfig
 
 Load the configuration from a TOML file. It reads the TOML file and extracts the input strings,
 output file, and verbose flag from the configuration. It returns a Config object with the extracted
@@ -99,16 +99,16 @@ output_file = "graph.png"
 verbose = true
 ```
 """
-function load_config(file_path::String)::Config
+function load_config(file_path::String)::SYDConfig
     if isempty(file_path)
         @debug "No configuration file provided. Using default configuration."
-        return Config()
+        return SYDConfig()
     end
 
     try
         config_dict = TOML.parsefile(file_path)
 
-        return from_dict(Config, config_dict)
+        return from_dict(SYDConfig, config_dict)
     catch e
         if isa(e, SystemError)
             @error "File not found: $file_path"
@@ -123,12 +123,12 @@ end
 
 const supported_eset_extensions = [".rds", ".RDS", ".jld2"]
 """
-    load_input(eset_file::String, config::Config)
+    load_input(eset_file::String, config::SYDConfig)
 
 Load the input expression data from the file specified in the configuration. The function will
 load the expression data from the file and return it as an `ExpressionSet`.
 """
-function load_input(eset_file::String, config::Config)
+function load_input(eset_file::String, config::SYDConfig)
 
     # Check if the file extension is valid
     if all(endswith.(eset_file, supported_eset_extensions) .== false)
@@ -152,7 +152,7 @@ function load_input(eset_file::String, config::Config)
     return eset
 end
 
-function save_results(eset::ExpressionSet, descriptor::Dict, config::Config)
+function save_results(eset::ExpressionSet, descriptor::Dict, config::SYDConfig)
     try
         # Writing the results to output dir
         eset_filename = output_file(config)

@@ -9,9 +9,9 @@
 end
 
 @testsnippet MockConfig begin
-    config = SyntheticExpressionMixtures.Config(;
-                                                column=SyntheticExpressionMixtures.ColumnConfig(;
-                                                                                                cell_type="cell_types"))
+    config = SyntheticExpressionMixtures.SYDConfig(;
+                                                   column=SyntheticExpressionMixtures.ColumnConfig(;
+                                                                                                   cell_type="cell_types"))
 end
 
 @testitem "generate expression mixtures " setup = [MockEset, MockConfig] begin

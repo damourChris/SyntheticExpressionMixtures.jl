@@ -1,11 +1,12 @@
 """
-    identify_cell_types(eset::ExpressionSet, config::Config)
+    identify_cell_types(eset::ExpressionSet, config::SYDConfig)
 
 Identify the cell types in the expression set based on the configuration provided.
 The function assumes that the expression set has a column with the cell type information for each
 sample. The cell type column is specified in the config.
 """
-function identify_cell_types(eset::ExpressionSet, config::Config)::Dict{String,Vector{Int}}
+function identify_cell_types(eset::ExpressionSet,
+                             config::SYDConfig)::Dict{String,Vector{Int}}
     # Get the cell type column
     (; cell_type) = config.column
 
@@ -24,11 +25,11 @@ function identify_cell_types(eset::ExpressionSet, config::Config)::Dict{String,V
 end
 
 """
-    aggregate_expression_values(eset::ExpressionSet, cell_types::Dict{String,Vector{Int}}, config::Config)
+    aggregate_expression_values(eset::ExpressionSet, cell_types::Dict{String,Vector{Int}}, config::SYDConfig)
 """
 function aggregate_expression_values(eset::ExpressionSet,
                                      cell_types::Dict{String,Vector{Int}},
-                                     config::Config)::ExpressionSet
+                                     config::SYDConfig)::ExpressionSet
     # Get the expression method
     (; expression_method) = config
 
@@ -52,7 +53,7 @@ end
 
 """
     generate_synthetic_expression_values(eset::ExpressionSet, cell_types::AbstractVector{String},
-                                         proportions::DataFrame, config::Config)
+                                         proportions::DataFrame, config::SYDConfig)
 
 Generate synthetic expression values for the given expression set based on the cell types, proportions,
 and configuration provided.
@@ -73,7 +74,7 @@ original expression set and the number of columns equal to the number of samples
 function generate_synthetic_expression_values(eset::ExpressionSet,
                                               cell_types::Dict{String,Vector{Int}},
                                               proportions::DataFrame,
-                                              config::Config)::Matrix
+                                              config::SYDConfig)::Matrix
     (; noise) = config
     noise_gen = noise.method == "normal" ? Normal(noise.mean, noise.std) :
                 Uniform(noise.min, noise.max)
@@ -120,7 +121,7 @@ end
 
 function generate_synthetic_mixture_pdata(base_eset::ExpressionSet,
                                           proportions::DataFrame,
-                                          config::Config)::DataFrame
+                                          config::SYDConfig)::DataFrame
     # Get the cell type column
     (; cell_type) = config.column
 
@@ -140,13 +141,13 @@ end
 
 """
     generate_synthetic_expression_mixtures(base_eset::ExpressionSet,
-                                           config::Config)
+                                           config::SYDConfig)
 
 Generate synthetic expression mixtures from a given base expression set. The function will generate
 the synthetic expression mixtures based on the configuration provided.
 """
 function generate_synthetic_expression_mixtures(base_eset::ExpressionSet,
-                                                config::Config)
+                                                config::SYDConfig)
 
     # Step 1: Sample the synthetic proportions corresponding to each cell types
     #       This function will generate the synthetic proportions for each cell type

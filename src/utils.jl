@@ -70,12 +70,12 @@ function create_proportion_label(cell_type::String,
 end
 
 """
-    generate_descriptor_file(config::Config)
+    generate_descriptor_file(config::SYDConfig)
 Generate a descriptor file for the synthetic datasets. The descriptor file is a YAML file	
 containing the metadata of the synthetic datasets. The metadata includes the dataset ID,
 title, and the series of synthetic datasets. The series includes the ID, platform, and type of each dataset.
 """
-function generate_descriptor_file(config::Config)
+function generate_descriptor_file(config::SYDConfig)
 
     # Get the configuration values
     (; base) = config.prefix
