@@ -12,6 +12,7 @@ using ExpressionData
 using UUIDs
 
 include("./config.jl")
+export create_config, SYDConfig
 
 include("./utils.jl")
 export generate_proportions, calculate_gene_expressions, create_proportion_label,

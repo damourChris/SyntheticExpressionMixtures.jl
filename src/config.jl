@@ -84,6 +84,8 @@ output_file(config::SYDConfig) = joinpath(output_dir(config),
                                           config.dataset.base_eset_id *
                                           ".synthetic.jld2")
 
+create_config(conf::AbstractDict) = from_dict(SYDConfig, conf)
+
 """
     load_config(file_path::String)::SYDConfig
 
