@@ -40,6 +40,16 @@ end
     feature_id::String = "feature id"
 end
 
+# This config handles how the noise is added to the synthetic data
+@option struct NoiseConfig
+    noise::Bool = true
+    method::String = "normal"
+    mean::Float64 = 0.0
+    std::Float64 = 0.1
+    min::Float64 = 0.0
+    max::Float64 = 1.0
+end
+
 """
     Config
 
@@ -54,6 +64,7 @@ Configuration object
     ontology::OntologyConfig = OntologyConfig()
     prefix::PrefixConfig = PrefixConfig()
     column::ColumnConfig = ColumnConfig()
+    noise::NoiseConfig = NoiseConfig()
 end
 
 """

@@ -74,6 +74,10 @@ function generate_synthetic_expression_values(eset::ExpressionSet,
                                               cell_types::Dict{String,Vector{Int}},
                                               proportions::DataFrame,
                                               config::Config)::Matrix
+    (; noise) = config
+    noise_gen = noise.method == "normal" ? Normal(noise.mean, noise.std) :
+                Uniform(noise.min, noise.max)
+
     # Get the expression values
     gxdata = expression_values(Matrix, eset)
 
@@ -91,10 +95,22 @@ function generate_synthetic_expression_values(eset::ExpressionSet,
             if length(cell_type_indices) > 1
                 gene_exprs = gxdata[:, cell_type_index]
                 gx_ = vec(gene_exprs) .* target_proportion
-                new_expression[:, sample_index] += gx_
+                if noise.noise
+                    new_expression[:, sample_index] += gx_ .+ rand(noise_gen, size(gx_))
+                else
+                    new_expression[:, sample_index] += gx_
+                end
             else
-                new_expression[:, sample_index] += gxdata[:, first(cell_type_indices)] .*
-                                                   target_proportion
+                if noise.noise
+                    new_expression[:, sample_index] += gxdata[:,
+                                                              first(cell_type_indices)] .*
+                                                       target_proportion .+
+                                                       rand(noise_gen, size(gxdata, 1))
+                else
+                    new_expression[:, sample_index] += gxdata[:,
+                                                              first(cell_type_indices)] .*
+                                                       target_proportion
+                end
             end
         end
     end
