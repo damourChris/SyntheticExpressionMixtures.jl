@@ -1,9 +1,7 @@
 
 module SyntheticExpressionMixtures
 
-function __init__()
-    return include(joinpath(@__DIR__, "setup_env.jl"))
-end
+include(joinpath(@__DIR__, "setup_env.jl"))
 
 using Configurations
 using DataFrames
