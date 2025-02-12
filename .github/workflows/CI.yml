@@ -36,7 +36,7 @@ jobs:
         with:
           version: ${{ matrix.version }}
           arch: ${{ matrix.arch }}
-      - run: julia -e 'using Pkg; Pkg.Registry.add(RegistrySpec(url = "https://damourChris/SysBioRegistry.jl.git"))'
+      - run: julia -e 'using Pkg; Pkg.Registry.add(RegistrySpec(url = "https://github.com/damourChris/SysBioRegistry.jl.git"))'
         shell: bash
       - uses: julia-actions/cache@v2
       - uses: julia-actions/julia-buildpkg@v1
