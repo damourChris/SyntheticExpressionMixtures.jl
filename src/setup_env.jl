@@ -3,6 +3,7 @@ using CondaPkg
 using Preferences
 using Libdl
 using UUIDs
+using RCall
 
 # Setup the channels
 CondaPkg.resolve()
