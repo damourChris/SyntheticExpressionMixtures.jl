@@ -197,3 +197,60 @@ function generate_synthetic_expression_mixtures(base_eset::ExpressionSet,
 
     return synthetic_eset
 end
+
+"""
+    generate_synthetic_expression_mixtures(config::SYDConfig)
+
+Generate a random synthetic expression set based on the configuration provided. This function will
+generate a synthetic expression set with random expression values and proportions based on the
+configuration provided.
+"""
+function generate_synthetic_expression_mixtures(config::SYDConfig)
+    # Step 1: Generate the synthetic expression set
+    #       This function will generate a synthetic expression set with random expression values
+    #       and proportions based on the configuration provided
+    # -- relevant configs:
+    #       - num_genes
+    #       - num_samples
+    #       - num_classes
+    #       - samples
+    base_eset = generate_synthetic_expression_set(config)
+
+    # Step 2: Generate the synthetic expression mixtures
+    #       This function will generate the synthetic expression mixtures based on the configuration
+    #       provided
+    # -- relevant configs:
+    #       - cell_type_column
+    #       - expression_method
+    #       - noise
+    synthetic_eset = generate_synthetic_expression_mixtures(base_eset, config)
+
+    return synthetic_eset
+end
+
+"""
+    generate_synthetic_expression_set(config::SYDConfig)
+
+Generate a synthetic expression set with random expression values. 
+"""
+function generate_synthetic_expression_set(n_samples, n_genes;)
+    # Generate the expression values
+    gxdata = randn(n_genes, n_samples)
+
+    # Generate the phenotype data
+    sample_names = ["sample_$i" for i in 1:n_samples]
+    cell_types = ["cell_type_$i" for i in 1:n_samples]
+    pdata = DataFrame(; sample_names=sample_names, cell_type=cell_types)
+
+    # Generate the feature data
+    feature_names = ["gene_$i" for i in 1:n_genes]
+    fdata = DataFrame(; feature_names=feature_names)
+
+    # Generate the experiment data
+    edata = DataFrame(; experiment_data=Dict{String,Any}())
+
+    # Generate the annotation
+    annotation = DataFrame(; annotation=Dict{String,Any}())
+
+    return ExpressionSet(gxdata, pdata, fdata, edata, annotation)
+end
